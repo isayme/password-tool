@@ -9,19 +9,13 @@ import (
 
 	"github.com/alexedwards/argon2id"
 	"github.com/gin-gonic/gin"
+	"github.com/isayme/go-pbkdf2"
 	"github.com/isayme/go-scrypt"
 	"golang.org/x/crypto/bcrypt"
 )
 
 var Name = "password-tool"
 var Version = "0.0.0"
-
-const (
-	algorithmBcrypt = "bcrypt"
-	algorithmArgon2 = "argon2"
-	algorithmScrypt = "scrypt"
-	algorithmPbkdf2 = "pbkdf2"
-)
 
 func randSalt(len int) (string, error) {
 	salt := make([]byte, len)
@@ -107,10 +101,31 @@ func (h scryptPasswordHasher) Match(hashed string) bool {
 	return strings.HasPrefix(hashed, "$scrypt$")
 }
 
+type pbkdf2PasswordHasher struct {
+}
+
+func (h pbkdf2PasswordHasher) Hash(password string) (string, error) {
+	return pbkdf2.Hash(password, pbkdf2.DefaultParams)
+}
+
+func (h pbkdf2PasswordHasher) Verify(hashed, password string) (bool, error) {
+	match, err := pbkdf2.Verify(password, hashed)
+	return match, err
+}
+
+func (h pbkdf2PasswordHasher) Supported(algorithm string) bool {
+	return algorithm == "pbkdf2"
+}
+
+func (h pbkdf2PasswordHasher) Match(hashed string) bool {
+	return strings.HasPrefix(hashed, "$pbkdf2-sha256$")
+}
+
 func init() {
 	passwordHasherList = append(passwordHasherList, bcryptPasswordHasher{})
 	passwordHasherList = append(passwordHasherList, argon2idPasswordHasher{})
 	passwordHasherList = append(passwordHasherList, scryptPasswordHasher{})
+	passwordHasherList = append(passwordHasherList, pbkdf2PasswordHasher{})
 }
 
 func Hash(algorithm, password string) (string, error) {

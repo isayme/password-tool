@@ -30,6 +30,8 @@ github.com/goccy/go-json v0.10.2/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MG
 github.com/google/go-cmp v0.5.5 h1:Khx7svrCpmxxtHBq5j2mp/xVjsi8hQMfNLvJFAlrGgU=
 github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/gofuzz v1.0.0/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
+github.com/isayme/go-pbkdf2 v0.0.0-20260512033805-72080697d2e0 h1:9MuU0pQCnBlb8C/UkGOVxPwyO1Z4Hd7AMaMmgzw/liI=
+github.com/isayme/go-pbkdf2 v0.0.0-20260512033805-72080697d2e0/go.mod h1:Ni9rhBe/TxLb4eUx5R6VoQXETk4nd9hHhK12PbgeAoA=
 github.com/isayme/go-scrypt v0.1.0 h1:cpd6MhZfuhZ875v2UY06HOledywZU30JpRAGNUBOELc=
 github.com/isayme/go-scrypt v0.1.0/go.mod h1:ooozjq1l7epDMAHODgxw2WRTZHgwOcZAaTG4tWuXM0o=
 github.com/json-iterator/go v1.1.12 h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnrnM=
